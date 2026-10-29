@@ -1482,14 +1482,43 @@ menuGrid.addEventListener("click", event => {
 
     renderCart();
 
-    // Краткое подтверждение добавления.
-    const oldText = button.textContent;
+   
+    // Показываем подтверждение и возможность отменить добавление.
     button.textContent = "✓ Добавлено";
 
+    const cancelButton = document.createElement("button");
+    cancelButton.textContent = "↩ Отменить";
+    cancelButton.className = "cancel-add-button";
+
+    button.insertAdjacentElement("afterend", cancelButton);
+    button.disabled = true;
+
+    cancelButton.addEventListener("click", () => {
+        const item = cart.get(dish.name);
+
+        if (item) {
+            item.quantity--;
+
+            if (item.quantity <= 0) {
+                cart.delete(dish.name);
+            }
+        }
+
+        renderCart();
+
+        button.disabled = false;
+        button.textContent = "+ В корзину";
+        cancelButton.remove();
+    });
+
     setTimeout(() => {
-        button.textContent = oldText;
-    }, 900);
-});
+        if (cancelButton.isConnected) {
+            cancelButton.remove();
+            button.disabled = false;
+            button.textContent = "+ В корзину";
+        }
+    }, 5000);
+
 
 // Изменение количества или удаление блюда.
 cartItems.addEventListener("click", event => {
