@@ -1416,6 +1416,13 @@ function renderCart() {
     cartCount.textContent = count;
     cartTotal.textContent = total + " сом";
 
+    // Обновляем количество товаров в кнопке справа сверху.
+    const navCartCount = document.getElementById("navCartCount");
+
+    if (navCartCount) {
+        navCartCount.textContent = count;
+    }
+
     if (cart.size === 0) {
         cartItems.innerHTML =
             '<p class="cart-empty">Корзина пока пуста</p>';
