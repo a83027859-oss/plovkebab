@@ -79,6 +79,23 @@
             color: #b82025;
         }
 
+/* Кнопка корзины в шапке сайта */
+.cart-nav-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    background: #b82025;
+    color: white !important;
+    border-radius: 7px;
+    white-space: nowrap;
+}
+
+.cart-nav-button:hover {
+    background: #8e171b;
+}
+
+
         /* 3. ГЛАВНЫЙ ЭКРАН */
         .hero {
             min-height: 480px;
@@ -533,6 +550,9 @@
                 <a href="#menu">Меню</a>
                 <a href="#about">О нас</a>
                 <a href="#contacts">Контакты</a>
+                 <a href="#cart" class="cart-nav-button">
+        🛒 Корзина <span id="navCartCount">0</span>
+                </a>
             </nav>
         </div>
     </header>
